@@ -1,4 +1,4 @@
-package com.amanarora.wikisearch;
+package com.amanarora.wikisearch.repository;
 
 import com.amanarora.wikisearch.model.Result;
 

@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.amanarora.wikisearch.Injector;
-import com.amanarora.wikisearch.SearchRepository;
+import com.amanarora.wikisearch.di.Injector;
+import com.amanarora.wikisearch.repository.SearchRepository;
 import com.amanarora.wikisearch.model.Page;
 
 import java.util.List;

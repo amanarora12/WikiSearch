@@ -1,4 +1,8 @@
-package com.amanarora.wikisearch;
+package com.amanarora.wikisearch.di;
+
+import com.amanarora.wikisearch.Constants;
+import com.amanarora.wikisearch.repository.SearchRepository;
+import com.amanarora.wikisearch.repository.WikipediaService;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

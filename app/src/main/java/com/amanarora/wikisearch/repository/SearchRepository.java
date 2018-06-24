@@ -1,4 +1,4 @@
-package com.amanarora.wikisearch;
+package com.amanarora.wikisearch.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -32,7 +32,8 @@ public class SearchRepository {
         Map<String, String> params = new HashMap<>();
         params.put("action", "query");
         params.put("format", "json");
-        params.put("prop", "pageimages|pageterms");
+        params.put("prop", "pageimages|pageterms|info");
+        params.put("inprop","url");
         params.put("generator", "prefixsearch");
         params.put("formatversion", String.valueOf(2));
         params.put("piprop", "thumbnail");
@@ -57,9 +58,6 @@ public class SearchRepository {
                             Query query = result.getQuery();
                             if (query != null) {
                                 List<Page> pages = query.getPages();
-                                for (Page page : pages) {
-                                    Log.d(LOG_TAG, "onResponse: Page " + page.getTitle());
-                                }
                                 data.setValue(pages);
                             }
                         }

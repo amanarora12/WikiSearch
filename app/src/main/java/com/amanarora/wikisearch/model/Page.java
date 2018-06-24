@@ -8,6 +8,7 @@ public class Page {
     private int index;
     private Thumbnail thumbnail;
     private Terms terms;
+    private String fullurl;
 
     public int getPageid() {
         return pageid;
@@ -57,4 +58,11 @@ public class Page {
         this.terms = terms;
     }
 
+    public String getFullurl() {
+        return fullurl;
+    }
+
+    public void setFullurl(String fullurl) {
+        this.fullurl = fullurl;
+    }
 }
