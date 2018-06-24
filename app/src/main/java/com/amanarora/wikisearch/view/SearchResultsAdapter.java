@@ -1,5 +1,6 @@
 package com.amanarora.wikisearch.view;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
@@ -12,11 +13,19 @@ import com.amanarora.wikisearch.R;
 import com.amanarora.wikisearch.databinding.SearchResultListItemBinding;
 import com.amanarora.wikisearch.model.Page;
 import com.amanarora.wikisearch.model.Terms;
+import com.amanarora.wikisearch.model.Thumbnail;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.SearchResultViewHolder> {
+
+    private Context context;
+
+    public SearchResultsAdapter(Context context) {
+        this.context = context;
+    }
 
     private List<Page> searchResults = new ArrayList<>();
 
@@ -42,6 +51,14 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 holder.binding.resultDescriptionTextView.setText(page.getTerms().getDescription().get(0));
             }
         }
+        if (page.getThumbnail() != null) {
+            Thumbnail thumbnail = page.getThumbnail();
+            if (thumbnail.getSource() != null) {
+                Glide.with(context)
+                        .load(page.getThumbnail().getSource())
+                        .into(holder.binding.resultImageView);
+            }
+       }
     }
 
     @Override

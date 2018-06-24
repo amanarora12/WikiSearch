@@ -36,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setupSearchResultsRecyclerView() {
         binding.content.resultList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new SearchResultsAdapter();
+        adapter = new SearchResultsAdapter(this);
         binding.content.resultList.setAdapter(adapter);
         setupSearch();
     }
@@ -50,6 +50,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                viewModel.setQuery(newText);
                 processQuery(newText);
                 return true;
             }
@@ -74,8 +75,7 @@ public class SearchActivity extends AppCompatActivity {
 
         MenuItem item = menu.findItem(R.id.action_search);
         binding.searchView.setMenuItem(item);
-        binding.searchView.showSearch();
-
+        binding.searchView.setQuery(viewModel.getQuery().getValue(), true);
         return true;
     }
 }

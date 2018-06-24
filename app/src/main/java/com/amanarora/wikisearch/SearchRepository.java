@@ -42,7 +42,7 @@ public class SearchRepository {
         params.put("gpssearch", query);
         params.put("gpslimit", String.valueOf(10));
         wikipediaService.getSearchResults(params)
-                .debounce(300, TimeUnit.MILLISECONDS)
+                .debounce(350, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Result>() {

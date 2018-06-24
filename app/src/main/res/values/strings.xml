@@ -2,5 +2,6 @@
     <string name="app_name">WikiSearch</string>
     <string name="search_hint">Search Wikipedia</string>
     <string name="action_search">Search</string>
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search">Search Wikipedia</string>
+    <string name="wiki_search">Wiki Search</string>
 </resources>

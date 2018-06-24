@@ -1,6 +1,7 @@
 package com.amanarora.wikisearch.viewmodel;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.amanarora.wikisearch.Injector;
@@ -11,6 +12,8 @@ import java.util.List;
 
 public class SearchViewModel extends ViewModel {
 
+    private MutableLiveData<String> query = new MutableLiveData<>();
+
     private SearchRepository searchRepository;
 
     public SearchViewModel() {
@@ -19,5 +22,13 @@ public class SearchViewModel extends ViewModel {
 
     public LiveData<List<Page>> loadSearchResults(String query) {
         return searchRepository.loadSearchResults(query.trim());
+    }
+
+    public void setQuery(String queryData) {
+        query.setValue(queryData);
+    }
+
+    public LiveData<String> getQuery() {
+        return query;
     }
 }
