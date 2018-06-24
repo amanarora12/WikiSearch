@@ -22,9 +22,15 @@ import java.util.List;
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.SearchResultViewHolder> {
 
     private Context context;
+    private Callback callback;
 
-    public SearchResultsAdapter(Context context) {
+    public interface Callback {
+        void onItemSelected(String url);
+    }
+
+    public SearchResultsAdapter(Context context, Callback callback) {
         this.context = context;
+        this.callback = callback;
     }
 
     private List<Page> searchResults = new ArrayList<>();
@@ -58,7 +64,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                         .load(page.getThumbnail().getSource())
                         .into(holder.binding.resultImageView);
             }
-       }
+        }
     }
 
     @Override
@@ -68,7 +74,9 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
     public void updateList(List<Page> pages) {
         searchResults.clear();
-        searchResults.addAll(pages);
+        if (pages != null && !pages.isEmpty()) {
+            searchResults.addAll(pages);
+        }
         notifyDataSetChanged();
     }
 
@@ -78,6 +86,13 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         SearchResultViewHolder(View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.onItemSelected(searchResults.get(getAdapterPosition()).getFullurl());
+                }
+            });
         }
+
     }
 }
